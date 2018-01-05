@@ -30,5 +30,6 @@ char *normalizeJson(char *str);
 struct Node *parseJson(char *str);
 struct Array parseArray(char *str);
 struct Object parseObject(char *str);
+struct Node *getValueByKey(struct Object *obj, char *key);
 
 #endif //JSON_JSON_H

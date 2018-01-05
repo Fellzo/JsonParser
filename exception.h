@@ -17,6 +17,9 @@ struct Exception KeyLengthLimitException;
 struct Exception MemoryError;
 struct Exception MaxKeysInObjectLimitException;
 struct Exception JsonObjectTooLongException;
+struct Exception WrongArrayIndexException;
+struct Exception WrongKeyNameException;
+struct Exception KeyNotFoundException;
 
 void throw(struct Exception *exception);
 

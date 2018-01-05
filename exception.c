@@ -9,6 +9,9 @@ struct Exception KeyLengthLimitException = { .message = "Object key is too long"
 struct Exception MemoryError = { .message = "Can't allocate memory for object", .code = 4};
 struct Exception MaxKeysInObjectLimitException = { .message = "Too many keys in object", .code = 5};
 struct Exception JsonObjectTooLongException = { .message = "Json is too long", .code = 6};
+struct Exception WrongKeyNameException = { .message = "Wrong key name", .code = 7};
+struct Exception WrongArrayIndexException = { .message = "Wrong array index", .code = 8};
+struct Exception KeyNotFoundException = { .message = "Key not found", .code = 9};
 
 void throw(struct Exception *exception)
 {

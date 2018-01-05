@@ -6,6 +6,8 @@
 #include "json.h"
 #include "test.h"
 #include "config.h"
+#include "input.h"
+#include "exception.h"
 
 
 int main(int argc, char **argv) {
@@ -28,6 +30,25 @@ int main(int argc, char **argv) {
     }
     json = normalizeJson(json);
     struct Node *root = parseJson(json);
-
+    struct Node *currNode = root;
+    printf("Enter path to Node:\n");
+    struct NodesPath inp = readMask();
+    for (int i = 0; i < inp.length; ++i) {
+        if (inp.masks[i].type == key) {
+            if (currNode->dataType != object) {
+                throw(&WrongKeyNameException);
+            }
+            currNode = getValueByKey(&currNode->object, inp.masks[i].key);
+            if (currNode == NULL) {
+                throw(&KeyNotFoundException);
+            }
+        } else {
+            if (currNode->dataType != array || currNode->array.length <= inp.masks[i].index) {
+                throw(&WrongArrayIndexException);
+            }
+            currNode = &currNode->array.values[inp.masks[i].index];
+        }
+    }
+    printf("%s\n", currNode->toString(currNode));
     return 0;
 }

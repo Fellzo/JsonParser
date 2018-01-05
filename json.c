@@ -40,6 +40,15 @@ char *primitiveRepresentation(struct Node *node) {
     return node->value;
 }
 
+struct Node *getValueByKey(struct Object *obj, char *key) {
+    for (int i = 0; i < obj->numberOfKeys; ++i) {
+        if (strcmp(obj->keys[i], key) == 0) {
+            return &obj->values[i];
+        }
+    }
+    return NULL;
+}
+
 /**
  * Representation of arrays
  * @param node
