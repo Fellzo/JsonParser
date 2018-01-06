@@ -6,22 +6,22 @@
 #define WRITE_IN_LOG_FILE true
 #define ERROR_LOG_FILE_NAME "errors.log"
 
-struct Exception {
+struct Error {
     const int code;
     const char *message;
 };
 
-struct Exception WrongJsonFormatException;
-struct Exception ArrayLengthLimitException;
-struct Exception KeyLengthLimitException;
-struct Exception MemoryError;
-struct Exception MaxKeysInObjectLimitException;
-struct Exception JsonObjectTooLongException;
-struct Exception WrongArrayIndexException;
-struct Exception WrongKeyNameException;
-struct Exception KeyNotFoundException;
-struct Exception FileNotFoundException;
+struct Error WrongJsonFormatException;
+struct Error ArrayLengthLimitException;
+struct Error KeyLengthLimitException;
+struct Error MemoryError;
+struct Error MaxKeysInObjectLimitException;
+struct Error JsonObjectTooLongException;
+struct Error WrongArrayIndexException;
+struct Error WrongKeyNameException;
+struct Error KeyNotFoundException;
+struct Error FileNotFoundException;
 
-void throw(struct Exception *exception);
+void abortWithError(struct Error *error);
 
 #endif //JSON_EXCEPTION_H

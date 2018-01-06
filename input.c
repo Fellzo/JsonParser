@@ -36,7 +36,7 @@ struct NodesPath readMask() {
                     break;
                 }
                 if (!inQuote && buff[j] == '[') {
-                    throw(&WrongKeyNameException);
+                    abortWithError(&WrongKeyNameException);
                 }
                 if (buff[j] == '"' && buff[j - 1] != '\\') {
                     inQuote = !inQuote;
@@ -52,7 +52,7 @@ struct NodesPath readMask() {
             } else {
                 res.masks[res.length].type = arr_index;
                 if (!isAvailableIndex(tmp)) {
-                    throw(&WrongArrayIndexException);
+                    abortWithError(&WrongArrayIndexException);
                 }
                 res.masks[res.length].index = atoi(tmp);
             }

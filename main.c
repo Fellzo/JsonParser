@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     }
     FILE *jF = fopen(fileName, "r");
     if (jF == NULL) {
-        throw(&FileNotFoundException);
+        abortWithError(&FileNotFoundException);
     }
     char *buff = (char *) malloc(sizeof(char) * MAX_LINE_LENGTH);
     while (!feof(jF)) {
@@ -39,15 +39,15 @@ int main(int argc, char **argv) {
     for (int i = 0; i < inp.length; ++i) {
         if (inp.masks[i].type == key) {
             if (currNode->dataType != object) {
-                throw(&WrongKeyNameException);
+                abortWithError(&WrongKeyNameException);
             }
             currNode = getValueByKey(&currNode->object, inp.masks[i].key);
             if (currNode == NULL) {
-                throw(&KeyNotFoundException);
+                abortWithError(&KeyNotFoundException);
             }
         } else {
             if (currNode->dataType != array || currNode->array.length <= inp.masks[i].index) {
-                throw(&WrongArrayIndexException);
+                abortWithError(&WrongArrayIndexException);
             }
             currNode = &currNode->array.values[inp.masks[i].index];
         }

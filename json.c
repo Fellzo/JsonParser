@@ -22,10 +22,10 @@ char *normalizeJson(char *str)
     str = __removeExtraSpaces(str);
     size_t jsonLength = strlen(str);
     if (str[0] != '{' && str[0] != '[') {
-        throw(&WrongJsonFormatException);
+        abortWithError(&WrongJsonFormatException);
     } else {
         if((str[0] == '{' && str[jsonLength - 1] != '}') || (str[0] == '[' && str[jsonLength - 1] != ']')) {
-            throw(&WrongJsonFormatException);
+            abortWithError(&WrongJsonFormatException);
         }
     }
     return str;
@@ -138,7 +138,7 @@ struct Array parseArray(char *str) {
     res.length = 0;
     struct Vector vector = splitValues(str, ',');
     if (vector.length >= MAX_ARRAY_LENGTH) {
-        throw(&ArrayLengthLimitException);
+        abortWithError(&ArrayLengthLimitException);
     }
     res.values = (struct Node *) malloc(sizeof(struct Node) * vector.length);
     for (size_t i = 0; i < vector.length; ++i) {
@@ -159,7 +159,7 @@ struct Object parseObject(char *str) {
     res.numberOfKeys = 0;
     struct Vector vector = splitValues(str, ','); // split object on key value strings
     if (vector.length > MAX_KEYS_IN_OBJECT) {
-        throw(&MaxKeysInObjectLimitException);
+        abortWithError(&MaxKeysInObjectLimitException);
     }
     res.values = (struct Node *) malloc(sizeof(struct Node) * vector.length);
     res.keys = (char **) malloc(vector.length * sizeof(char *));
@@ -168,7 +168,7 @@ struct Object parseObject(char *str) {
         struct Vector keyValue = splitValues(vector.values[i], ':');
         size_t keyLen = strlen(keyValue.values[0]);
         if (keyLen > MAX_KEY_LENGTH) {
-            throw(&KeyLengthLimitException);
+            abortWithError(&KeyLengthLimitException);
         }
         res.keys[res.numberOfKeys] = (char *) malloc(sizeof(char) * (keyLen + 1));
         strcpy(res.keys[res.numberOfKeys], keyValue.values[0]);
@@ -188,7 +188,7 @@ struct Node *parseJson(char *str) {
     bool isObj = isObject(str);
     bool isArr = isArray(str);
     if (!isObj && !isArr) {
-        throw(&WrongJsonFormatException);
+        abortWithError(&WrongJsonFormatException);
     }
     if (isArr) {
         res->array = parseArray(str);

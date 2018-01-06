@@ -97,7 +97,7 @@ struct Vector splitValues(char *str, char sep) {
             currentValue[currentPos] = str[i];
             ++currentPos;
             if (currentPos >= MAX_JSON_LENGTH) {
-                throw(&JsonObjectTooLongException);
+                abortWithError(&JsonObjectTooLongException);
             }
         }
         if (str[i] == '{' || str[i] == '[') {
@@ -105,11 +105,11 @@ struct Vector splitValues(char *str, char sep) {
         }
         if (str[i] == '}' || str[i] == ']') {
             if (isEmpty(&stack)) {
-                throw(&WrongJsonFormatException);
+                abortWithError(&WrongJsonFormatException);
             }
             char c = pop(&stack);
             if (!isBracketsMatch(c, str[i])) {
-                throw(&WrongJsonFormatException);
+                abortWithError(&WrongJsonFormatException);
             }
         }
     }
