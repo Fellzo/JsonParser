@@ -39,14 +39,17 @@ int main(int argc, char **argv) {
     for (int i = 0; i < inp.length; ++i) {
         if (inp.masks[i].type == key) {
             if (currNode->dataType != JSON_OBJECT) {
+                free(root);
                 abortWithError(&WrongKeyNameException);
             }
             currNode = getValueByKey(&currNode->object, inp.masks[i].key);
             if (currNode == NULL) {
+                free(root);
                 abortWithError(&KeyNotFoundException);
             }
         } else {
             if (currNode->dataType != JSON_ARRAY || currNode->array.length <= inp.masks[i].index) {
+                free(root);
                 abortWithError(&WrongArrayIndexException);
             }
             currNode = &currNode->array.values[inp.masks[i].index];
