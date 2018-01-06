@@ -71,7 +71,7 @@ struct Vector splitValues(char *str, char sep) {
         startPos = 1;
         --endPos;
     }
-    char *currentValue = (char *) malloc(MAX_JSON_LENGTH * sizeof(char));
+    char *currentValue = (char *) calloc(MAX_JSON_LENGTH, sizeof(char));
     int currentPos = 0;
     bool inQuote = false;
     struct Stack stack;
