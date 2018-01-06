@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#include "JSON_types.h"
+#include "json_types.h"
 #include "config.h"
 #include "stack.h"
 #include "helpers.h"
