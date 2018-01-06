@@ -53,5 +53,6 @@ int main(int argc, char **argv) {
         }
     }
     printf("%s\n", currNode->toString(currNode));
+    free(root);
     return 0;
 }
