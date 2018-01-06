@@ -14,6 +14,7 @@ struct Stack {
 };
 
 void init(struct Stack *stack);
+void clear(struct Stack *stack);
 void push(struct Stack *stack, char x);
 char pop(struct Stack *stack);
 bool isEmpty(struct Stack *stack);

@@ -166,6 +166,7 @@ void stackTests() {
     assert(pop(&stack) == '&');
     assert(pop(&stack) == '{');
     assert(isEmpty(&stack) == true);
+    clear(&stack);
 }
 
 void startTests() {

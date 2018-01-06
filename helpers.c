@@ -113,6 +113,7 @@ struct Vector splitValues(char *str, char sep) {
             }
         }
     }
+    clear(&stack);
     free(currentValue);
     return res;
 }

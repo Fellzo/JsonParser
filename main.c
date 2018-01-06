@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
     if (jF == NULL) {
         abortWithError(&FileNotFoundException);
     }
-    char *buff = (char *) malloc(sizeof(char) * MAX_LINE_LENGTH);
+    char *buff = (char *) calloc(MAX_LINE_LENGTH, sizeof(char));
     while (!feof(jF)) {
         fgets(buff, MAX_LINE_LENGTH, jF);
         strcat(json, buff);
