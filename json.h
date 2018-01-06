@@ -15,7 +15,7 @@ struct Object {
 
 struct Node {
     union {
-        char *value; // for null/true/false/number/string types
+        char *value; // for null/true/false/number/JSON_STRING types
         struct Array array;
         struct Object object;
     };

@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
     struct NodesPath inp = readMask();
     for (int i = 0; i < inp.length; ++i) {
         if (inp.masks[i].type == key) {
-            if (currNode->dataType != object) {
+            if (currNode->dataType != JSON_OBJECT) {
                 abortWithError(&WrongKeyNameException);
             }
             currNode = getValueByKey(&currNode->object, inp.masks[i].key);
@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
                 abortWithError(&KeyNotFoundException);
             }
         } else {
-            if (currNode->dataType != array || currNode->array.length <= inp.masks[i].index) {
+            if (currNode->dataType != JSON_ARRAY || currNode->array.length <= inp.masks[i].index) {
                 abortWithError(&WrongArrayIndexException);
             }
             currNode = &currNode->array.values[inp.masks[i].index];

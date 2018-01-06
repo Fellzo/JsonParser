@@ -111,11 +111,11 @@ char *objectRepresentation(struct Node *node) {
 struct Node makeNode(char *str) {
     struct Node res;
     res.dataType = getDataType(str);
-    if (res.dataType == array) {
+    if (res.dataType == JSON_ARRAY) {
         res.array = parseArray(str);
         res.toString = arrRepresentation;
     } else {
-        if (res.dataType == object) {
+        if (res.dataType == JSON_OBJECT) {
             res.object = parseObject(str);
             res.toString = objectRepresentation;
         } else {
@@ -157,7 +157,7 @@ struct Array parseArray(char *str) {
 struct Object parseObject(char *str) {
     struct Object res;
     res.numberOfKeys = 0;
-    struct Vector vector = splitValues(str, ','); // split object on key value strings
+    struct Vector vector = splitValues(str, ','); // split JSON_OBJECT on key value strings
     if (vector.length > MAX_KEYS_IN_OBJECT) {
         abortWithError(&MaxKeysInObjectLimitException);
     }
@@ -192,11 +192,11 @@ struct Node *parseJson(char *str) {
     }
     if (isArr) {
         res->array = parseArray(str);
-        res->dataType = array;
+        res->dataType = JSON_ARRAY;
         res->toString = arrRepresentation;
     } else {
         res->object = parseObject(str);
-        res->dataType = object;
+        res->dataType = JSON_OBJECT;
         res->toString = objectRepresentation;
     }
     return res;

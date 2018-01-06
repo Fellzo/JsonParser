@@ -11,14 +11,14 @@
 #define VALUE_DELIMITER ','
 
 enum JSON_DATA_TYPES {
-    integer,
-    real,
-    string,
-    True,
-    False,
-    array,
-    object,
-    null
+    JSON_INTEGER,
+    JSON_REAL,
+    JSON_STRING,
+    JSON_TRUE,
+    JSON_FALSE,
+    JSON_ARRAY,
+    JSON_OBJECT,
+    JSON_NULL
 };
 
 

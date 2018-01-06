@@ -14,12 +14,12 @@ void isIntegerTests() {
     assert(isInteger("+1000") == false); // JSON number can't has leading plus
     assert(isInteger("132.312") == false); // Real number
     assert(isInteger("1234eee") == false); // Text after numbers
-    assert(isInteger("") == false); // Fail on empty string
+    assert(isInteger("") == false); // Fail on empty JSON_STRING
     assert(isInteger("randomstring") == false); // Fail on text
 }
 
 void isRealTests() {
-    assert(isReal("1000") == true); // Integer can be real too
+    assert(isReal("1000") == true); // Integer can be JSON_REAL too
     assert(isReal("10.1") == true); // Simple test
     assert(isReal("10e5") == true); // Exponential test
     assert(isReal("10E5") == true); // Register exponential test
@@ -28,11 +28,11 @@ void isRealTests() {
     assert(isReal("10.312e5") == true); // Dot and E
     assert(isReal("10.312e-144") == true); // Dot and sign E
     assert(isReal("-10.55e+144") == true); // Complex test
-    assert(isReal("10e55.1") == false); // Only integer exponent
+    assert(isReal("10e55.1") == false); // Only JSON_INTEGER exponent
     assert(isReal("10.") == false); // Missing part after dot
     assert(isReal("512e") == false); // Missing part after exp
     assert(isReal("randomstring") == false); // Number missing
-    assert(isReal("") == false); // Empty string
+    assert(isReal("") == false); // Empty JSON_STRING
     assert(isReal("123ere") == false); // Text after numbers
 }
 
@@ -45,25 +45,25 @@ void isNullTests() {
 
 void isTrueTests() {
     assert(isTrue("true") == true);
-    assert(isTrue("True") == false); // Register sensitive
+    assert(isTrue("JSON_TRUE") == false); // Register sensitive
     assert(isTrue("125") == false); // Number
-    assert(isTrue("\"randstring\"") == false); // Random json format string
-    assert(isTrue("") == false); // Empty string
+    assert(isTrue("\"randstring\"") == false); // Random json format JSON_STRING
+    assert(isTrue("") == false); // Empty JSON_STRING
 }
 
 void isFalseTests() {
     assert(isFalse("false") == true);
-    assert(isFalse("False") == false); // Register sensitive
+    assert(isFalse("JSON_FALSE") == false); // Register sensitive
     assert(isFalse("125") == false); // Number
-    assert(isFalse("\"randstring\"") == false); // Random json format string
-    assert(isFalse("") == false); // Empty string
+    assert(isFalse("\"randstring\"") == false); // Random json format JSON_STRING
+    assert(isFalse("") == false); // Empty JSON_STRING
 }
 
 void isStringTests() {
-    assert(isString("\"random string\"") == true); // Simple test
-    assert(isString("\"With quotes \\\" \"") == true); // With escaped quotes inside string
+    assert(isString("\"random JSON_STRING\"") == true); // Simple test
+    assert(isString("\"With quotes \\\" \"") == true); // With escaped quotes inside JSON_STRING
     assert(isString("\"\"") == true); // Empty quotes
-    assert(isString("") == false); // Empty string
+    assert(isString("") == false); // Empty JSON_STRING
     assert(isString("\"\"\"") == false); // Extra unescaped quotes
 }
 

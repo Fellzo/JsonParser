@@ -15,6 +15,7 @@ void clear(struct Stack *stack) {
     free(stack->__alloc);
 }
 
+
 void push(struct Stack *stack, char x) {
     if (stack->topPos + 1 >= stack->__alloc) {
         stack->stack = (char *) realloc(stack->stack, (stack->__alloc * 2 + 1) * sizeof(char));
