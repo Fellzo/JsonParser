@@ -12,7 +12,7 @@ void init(struct Stack *stack) {
 void clear(struct Stack *stack) {
     stack->topPos = -1;
     stack->__alloc = 0;
-    free(stack);
+    free(stack->__alloc);
 }
 
 void push(struct Stack *stack, char x) {
