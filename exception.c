@@ -12,6 +12,7 @@ struct Exception JsonObjectTooLongException = { .message = "Json is too long", .
 struct Exception WrongKeyNameException = { .message = "Wrong key name", .code = 7};
 struct Exception WrongArrayIndexException = { .message = "Wrong array index", .code = 8};
 struct Exception KeyNotFoundException = { .message = "Key not found", .code = 9};
+struct Exception FileNotFoundException = { .message = "Json file not found", .code = 10};
 
 void throw(struct Exception *exception)
 {

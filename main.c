@@ -23,6 +23,9 @@ int main(int argc, char **argv) {
         fileName = "test.json";
     }
     FILE *jF = fopen(fileName, "r");
+    if (jF == NULL) {
+        throw(&FileNotFoundException);
+    }
     char *buff = (char *) malloc(sizeof(char) * MAX_LINE_LENGTH);
     while (!feof(jF)) {
         fgets(buff, MAX_LINE_LENGTH, jF);

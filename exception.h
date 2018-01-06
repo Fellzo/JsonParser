@@ -20,6 +20,7 @@ struct Exception JsonObjectTooLongException;
 struct Exception WrongArrayIndexException;
 struct Exception WrongKeyNameException;
 struct Exception KeyNotFoundException;
+struct Exception FileNotFoundException;
 
 void throw(struct Exception *exception);
 
